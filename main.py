@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, url_for, render_template
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('instance.config')
 
 @app.route('/')
 def landing():
-    return 'Wassup Earth'
+    return render_template('landing.html')
 
 if __name__ == '__main__':
-  app.run()
+  app.run(debug=True)
