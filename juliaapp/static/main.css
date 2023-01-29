@@ -1,5 +1,48 @@
+/*
+|| Colour scheme HEX
+#28282f - Dark purple - Background 
+#31313f - Light purple - Accent
+#f9a800 - Gold - Highlight
+#fffffc - White - text
+#424255 - Mauve - On hover
+*/
+
+/* { border: 1px solid green; } */
+
+/* || General styles */
+
 body {
-    background-color: #1c1c1cff;
-    font-family: 'JetBrains Mono', monospace;
-    color: whitesmoke;
+  margin-top: 60px;
+  background-color: #28282f;
+  font-family: 'JetBrains Mono', monospace;
+  color: #fffffc; 
+  }
+
+/* || Navbar styles */
+
+nav {
+  background-color: #31313f;
+  display: block;
+  overflow: hidden;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 2;
+  }
+
+/* Navbar link */
+nav a {
+  border-bottom: 1px solid #f9a800;
+  float: right;
+  color: #fffffc;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  }
+ 
+  /* Change the color of links on hover */
+  nav a:hover {
+  background-color: #424255;
   }

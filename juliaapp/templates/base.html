@@ -11,6 +11,11 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+    <nav>
+        <a href="{{ url_for('routes.landing') }}">About</a>
+        <a href="{{ url_for('routes.gen') }}">Generate</a>
+        <a href="{{ url_for('routes.login') }}">Login</a>
+    </nav>
     {% block content %}{% endblock %}
 </body>
 </html>
