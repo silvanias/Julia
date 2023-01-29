@@ -1,8 +1,13 @@
-from flask import Flask, url_for, render_template
+from flask import Flask
+from . import routes
 
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_object('instance.config')
+def create_app():
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_object('instance.config')
 
-@app.route('/')
-def landing():
-    return render_template('landing.html')
+    register_blueprints(app)
+    
+    return app
+
+def register_blueprints(app: Flask):
+    app.register_blueprint(routes.blueprint)
