@@ -19,6 +19,23 @@ body {
   color: #fffffc; 
   }
 
+h1{
+  text-align: center;
+}
+
+p {
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+section{
+  display: grid;
+  place-items: center;
+  align-content: center;
+  text-align: start;
+  min-height: 10vh;
+}
+
 /* || Navbar styles */
 
 nav {
@@ -66,7 +83,7 @@ footer {
 
 
 .GitHub{
-  padding-top: 10px;
+  padding-top: 11px;
   padding-bottom: 10px;
   height: 40px;
   width: 40px;
