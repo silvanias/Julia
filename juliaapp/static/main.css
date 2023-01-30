@@ -5,6 +5,7 @@
 #f9a800 - Gold - Highlight
 #fffffc - White - text
 #424255 - Mauve - On hover
+https://codepen.io/sosuke/pen/Pjoqqp
 */
 
 /* { border: 1px solid green; } */
@@ -46,3 +47,27 @@ nav a {
   nav a:hover {
   background-color: #424255;
   }
+
+/* || Footer styles */
+
+footer {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #31313f;
+  object-fit: contain;
+  overflow: hidden;
+  z-index: 2;
+}
+
+
+.GitHub{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 40px;
+  width: 40px;
+}

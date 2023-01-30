@@ -17,5 +17,10 @@
         <a href="{{ url_for('routes.login') }}">Login</a>
     </nav>
     {% block content %}{% endblock %}
+    <footer>
+        <a href="https://github.com/sikorosenai">
+            <img class="GitHub" src="{{url_for('static', filename='images/github-mark-white.png')}}" alt="GitHub logo"/>
+        </a>
+    </footer>
 </body>
 </html>
