@@ -1,5 +1,94 @@
+/*
+|| Colour scheme HEX
+#28282f - Dark purple - Background 
+#31313f - Light purple - Accent
+#f9a800 - Gold - Highlight
+#fffffc - White - text
+#424255 - Mauve - On hover
+https://codepen.io/sosuke/pen/Pjoqqp
+*/
+
+/* { border: 1px solid green; } */
+
+/* || General styles */
+
 body {
-    background-color: #1c1c1cff;
-    font-family: 'JetBrains Mono', monospace;
-    color: whitesmoke;
+  margin-top: 60px;
+  background-color: #28282f;
+  font-family: 'JetBrains Mono', monospace;
+  color: #fffffc; 
   }
+
+h1{
+  text-align: center;
+}
+
+p {
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+section{
+  display: grid;
+  place-items: center;
+  align-content: center;
+  text-align: start;
+  min-height: 10vh;
+}
+
+/* || Navbar styles */
+
+nav {
+  background-color: #31313f;
+  display: block;
+  overflow: hidden;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 2;
+  }
+
+/* Navbar link */
+nav a {
+  border-bottom: 1px solid #f9a800;
+  float: right;
+  color: #fffffc;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  }
+ 
+  /* Change the color of links on hover */
+  nav a:hover {
+  background-color: #424255;
+  }
+
+/* || Footer styles */
+
+footer {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #31313f;
+  object-fit: contain;
+  overflow: hidden;
+  z-index: 2;
+}
+
+
+.GitHub{
+  padding-top: 11px;
+  padding-bottom: 10px;
+  height: 40px;
+  width: 40px;
+}
+
+.GitHub:hover {
+  transform: scale(1.2);
+}

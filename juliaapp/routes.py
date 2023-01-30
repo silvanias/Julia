@@ -5,3 +5,11 @@ blueprint = Blueprint('routes', __name__)
 @blueprint.route('/')
 def landing():
     return render_template('landing.html')
+
+@blueprint.route('/login')
+def login():
+    return render_template('auth/login.html')
+
+@blueprint.route('/gen')
+def gen():
+    return render_template('gen.html')
