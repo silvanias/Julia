@@ -71,3 +71,7 @@ footer {
   height: 40px;
   width: 40px;
 }
+
+.GitHub:hover {
+  transform: scale(1.2);
+}
