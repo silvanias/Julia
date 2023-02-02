@@ -10,6 +10,10 @@ def landing():
 def login():
     return render_template('auth/login.html')
 
+@blueprint.route('/signup')
+def signup():
+    return render_template('auth/signup.html')
+
 @blueprint.route('/gen')
 def gen():
     return render_template('gen.html')

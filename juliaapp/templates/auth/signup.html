@@ -3,13 +3,19 @@
 <title>Login</title>
 {% endblock head %}
 {% block content %}
-    <h1> Login pog </h1>
+    <h1> Signup pog </h1>
     <form method="post">
+        <div class="form-element">
+            <input type="text" name="username" id="username" placeholder="Username">
+        </div>
         <div class="form-element">
             <input type="email" name="email" id="email" placeholder="Email">
         </div>
         <div class="form-element">
-            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="password1" id="password1" placeholder="Password">
+        </div>
+        <div class="form-element">
+            <input type="password" name="password2" id="password2" placeholder="Confirm Password">
         </div>
         <button type="submit" class="input-button"> Log In </button>
     </form>
