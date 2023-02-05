@@ -1,5 +1,5 @@
 from flask import Flask
-from juliaapp.extensions.database import db 
+from juliaapp.extensions.database import db, migrate 
 from . import routes
 
 def create_app():
@@ -7,7 +7,10 @@ def create_app():
     app.config.from_object('juliaapp.config')
     register_extensions(app)
     register_blueprints(app)
-    
+    print(app.config["SECRET_KEY"])
+    print(app.config["SQLALCHEMY_DATABASE_URI"])
+    print(app.config["FLASK_APP"])
+
     return app
 
 def register_blueprints(app: Flask):
@@ -15,3 +18,4 @@ def register_blueprints(app: Flask):
 
 def register_extensions(app: Flask):
     db.init_app(app)
+    migrate.init_app(app,db)
