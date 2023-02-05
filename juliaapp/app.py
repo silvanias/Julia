@@ -5,11 +5,9 @@ from . import routes
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object('juliaapp.config')
+    
     register_extensions(app)
     register_blueprints(app)
-    print(app.config["SECRET_KEY"])
-    print(app.config["SQLALCHEMY_DATABASE_URI"])
-    print(app.config["FLASK_APP"])
 
     return app
 

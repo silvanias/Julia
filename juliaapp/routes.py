@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request
+from .models import User
 
 blueprint = Blueprint('routes', __name__)
 
