@@ -1,7 +1,7 @@
 {% extends "base.html" %}
+{% block head %}
+<title>Profile</title>
+{% endblock head %}
 {% block content %}
-    <h1> Generate your fractals here (eventually) </h1>
-    {% for user in users %}
     <p>{{ user.username }} {{user.email}} {{user.password }}</p>
-    {% endfor %}
 {% endblock content %}

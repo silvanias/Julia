@@ -31,6 +31,13 @@ def signup():
             print('Passwords must be 5 or more characters')
     return render_template('auth/signup.html')
 
+@blueprint.route('/profile/<username>')
+def profile(username):
+    user = User.query.filter_by(username=username).first()
+    all_users = User.query.filter_by(username=username).first()
+    return render_template('profile.html', user=user)
+
 @blueprint.route('/gen')
 def gen():
-    return render_template('gen.html')
+    all_users = User.query.all()
+    return render_template('gen.html', users = all_users)
