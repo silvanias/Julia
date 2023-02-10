@@ -19,7 +19,7 @@ def login():
     return render_template('auth/login.html')
 
 @blueprint.route('/signup', methods=['GET', 'POST'])
-def signup():
+def signup(): 
     if request.method == 'POST':
         email = request.form.get('email')
         firstName = request.form.get('username')

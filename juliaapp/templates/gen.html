@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <h1> Generate your fractals here (eventually) </h1>
+    <h2> List of users </h2>
     {% for user in users %}
     <p>{{ user.username }} {{user.email}} {{user.password }}</p>
     {% endfor %}
