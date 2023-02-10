@@ -33,7 +33,7 @@ def signup():
 
 @blueprint.route('/profile/<username>')
 def profile(username):
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=username).first_or_404()
     all_users = User.query.filter_by(username=username).first()
     return render_template('profile.html', user=user)
 
