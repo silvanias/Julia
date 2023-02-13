@@ -3,6 +3,8 @@ from .models import User
 
 blueprint = Blueprint('routes', __name__)
 
+sets = ['julia', 'mandelbrot']
+
 @blueprint.route('/')
 def landing():
     return render_template('landing.html')
@@ -37,7 +39,7 @@ def profile(username):
     all_users = User.query.filter_by(username=username).first()
     return render_template('profile.html', user=user)
 
-@blueprint.route('/gen')
+@blueprint.route('/gen', methods=['GET', 'POST'])
 def gen():
     all_users = User.query.all()
-    return render_template('gen.html', users = all_users)
+    return render_template('gen.html', users=all_users, sets=sets)

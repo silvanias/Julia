@@ -4,7 +4,7 @@ from datetime import datetime
 
 def test_user_update(client):
     temp_creation_date = datetime(2000, 1, 1, 12, 00, 00)
-    user = User(username='test', email='usertestemail@test.com', password='password', creation_date=temp_creation_date)
+    user = User(username='test', email='user@test.com', password='password', creation_date=temp_creation_date)
     db.session.add(user)
     db.session.commit()
 
@@ -16,7 +16,7 @@ def test_user_update(client):
 
 def test_user_delete(client):
     temp_creation_date = datetime(2000, 1, 1, 12, 00, 00)
-    user = User(username='test', email='usertestemail@test.com', password='password', creation_date=temp_creation_date)
+    user = User(username='test', email='user@test.com', password='password', creation_date=temp_creation_date)
     db.session.add(user)
     db.session.commit()
 

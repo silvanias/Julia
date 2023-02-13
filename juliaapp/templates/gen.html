@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
     <h1> Generate your fractals here (eventually) </h1>
+    <form method="post">
+        <div class="form-element">
+            <input type="text" name="realnum" id="realnum" placeholder="Real Number">
+        </div>
+        <div class="form-element">
+            <input type="text" name="imagnum" id="imagnum" placeholder="Imaginary Number">
+        </div>
+        <div>
+            <select name="sets" id="sets">
+                {% for set in sets %}
+                <option value="{{ set }}">{{ set.title() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="input-button"> Generate </button>
+    </form>
     <h2> List of users </h2>
     {% for user in users %}
     <p>{{ user.username }} {{user.email}} {{user.password }}</p>
