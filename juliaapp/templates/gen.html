@@ -3,15 +3,15 @@
     <h1> Generate your fractals here (eventually) </h1>
     <form method="post">
         <div class="form-element">
-            <input type="text" name="realnum" id="realnum" placeholder="Real Number">
+            <input type="number" name="realnum" id="realnum" placeholder="Real Number">
         </div>
         <div class="form-element">
-            <input type="text" name="imagnum" id="imagnum" placeholder="Imaginary Number">
+            <input type="number" name="imagnum" id="imagnum" placeholder="Imaginary Number">
         </div>
         <div>
             <select name="sets" id="sets">
                 {% for set in sets %}
-                <option value="{{ set }}">{{ set.title() }}</option>
+                <option value="{{ set }}" id="{{ set }}">{{ set.title() }}</option>
                 {% endfor %}
             </select>
         </div>
