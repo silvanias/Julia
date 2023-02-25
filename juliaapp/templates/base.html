@@ -16,6 +16,16 @@
         <a href="{{ url_for('routes.gen') }}">Generate</a>
         <a href="{{ url_for('routes.get_login') }}">Login</a>
     </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
     {% block content %}{% endblock %}
     <footer>
         <a href="https://github.com/sikorosenai">

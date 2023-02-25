@@ -14,6 +14,5 @@ users_data = {
 
 for user, data in users_data.items():
     new_user = User(username=user, email=data['email'], password=data['password'], creation_date=data['creation_date'])
-    db.session.add(new_user)
-    
+    db.session.add(new_user) 
 db.session.commit()

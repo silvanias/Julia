@@ -159,6 +159,40 @@ select:focus {
   border: 1px solid #1c1c1c;
 }
 
+/* || Flash styles */
+
+.alert {
+  padding: 10px;
+  background-color: #f9a800;
+  color: #fffffc;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.closebtn {
+  margin-left: 8px;
+  color: #fffffc;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: #1c1c1cff;
+}
+
+.alert.success {
+  background-color: #20C20E;
+}
+
+.alert.error {
+  background-color: #ef233cff;
+}
+
 /* || Footer styles */
 
 footer {
