@@ -21,8 +21,8 @@ def post_login():
     password = request.form.get('password')
 
     if email == "admin@admin" and password == "password":
-        print("logged in")
-        return redirect(url_for('routes.gen'))
+        flash('Logged in kinda', category='success')
+        return redirect(url_for('routes.profile' , username='admin'))
     return render_template('auth/login.html')
 
 @blueprint.get('/signup')

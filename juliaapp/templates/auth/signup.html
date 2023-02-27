@@ -17,6 +17,10 @@
         <div class="form-element">
             <input type="password" name="password2" id="password2" placeholder="Confirm Password" required>
         </div>
-        <button type="submit" class="input-button"> Login </button>
+        <button type="submit" class="input-button"> Signup </button>
     </form>
+    <section>
+        <p>Have an account?</p>
+        <a href="{{ url_for('routes.get_login') }}">Login Here</a>
+    </section>
 {% endblock content %}

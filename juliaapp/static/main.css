@@ -36,6 +36,9 @@ section{
   min-height: 10vh;
 }
 
+a{
+  color:#f9a800;
+}
 /* Remove number spin wheel */
 
 input[type='number'] {
