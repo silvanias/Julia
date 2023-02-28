@@ -32,22 +32,29 @@ def get_signup():
 
 @blueprint.post('/signup')
 def post_signup(): 
-    email = request.form.get('email')
-    username = request.form.get('username')
-    password1 = request.form.get('password1')
-    password2 = request.form.get('password2')
-    if password1 != password2:
-        flash('Passwords must match', category='error')
-    elif len(password1) < 5:
-        flash('Passwords must be 5 or more characters', category='error')
-    elif User.query.filter_by(email=email).first():
-        flash('Email already exists', category='error')
-    else:
+    try:
+        email = request.form.get('email')
+        username = request.form.get('username')
+        password1 = request.form.get('password1')
+        password2 = request.form.get('password2')
+        if password1 != password2:
+            raise Exception('Passwords must match')
+        elif len(password1) < 5:
+            raise Exception('Passwords must be 5 or more characters')
+        elif User.query.filter_by(username=username).first():
+            raise Exception('Username is taken')
+        elif User.query.filter_by(email=email).first():
+            raise Exception('Email already exists')
+        
         new_user = User(email = email, username = username, password = generate_password_hash(password1, method = 'pbkdf2:sha256'))
         new_user.save()
         flash('User Created!', category='success')
         return redirect(url_for('routes.profile' , username=username))
-    return render_template('auth/signup.html')
+    
+    except Exception as error_message:
+        error = error_message or 'An unkown error occurred while creating a user. Contact me on github :)'
+        flash(error, category='error')
+        return render_template('auth/signup.html')
 
 @blueprint.get('/logout')
 def logout():
