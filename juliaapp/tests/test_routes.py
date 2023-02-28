@@ -16,7 +16,7 @@ def test_signup_creates_user(client):
     'password1':'password',
     'password2':'password'
     })
-    assert User.query.first() is not None
+    assert User.query.count() == 1
 
 def test_user_profile_page_redirect(client):
     # Create a user
@@ -38,6 +38,20 @@ def test_user_created_flash(client):
     }, follow_redirects=True)
     assert b'<div class="alert success">' in response.data
     assert b'User Created!' in response.data 
+
+def test_user_nonunique_email_fail(client):
+    response = client.post('/signup', data={
+    'username':'test', 
+    'email':'user@test.com',
+    'password1':'password',
+    'password2':'password'
+    })
+    response = client.post('/signup', data={
+    'username':'test', 
+    'email':'user@test.com',
+    'password1':'password',
+    'password2':'password'
+    })
 
 def test_signup_content(client):
     # Returns landing content

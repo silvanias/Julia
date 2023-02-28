@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from .models import User
+from werkzeug.security import generate_password_hash, check_password_hash
 from juliaapp.extensions.database import db, CRUDMixin
 
 blueprint = Blueprint('routes', __name__)
@@ -39,12 +40,18 @@ def post_signup():
         flash('Passwords must match', category='error')
     elif len(password1) < 5:
         flash('Passwords must be 5 or more characters', category='error')
+    elif User.query.filter_by(email=email).first():
+        flash('Email already exists', category='error')
     else:
-        new_user = User(email = email, username = username, password = password1)
+        new_user = User(email = email, username = username, password = generate_password_hash(password1, method = 'pbkdf2:sha256'))
         new_user.save()
         flash('User Created!', category='success')
         return redirect(url_for('routes.profile' , username=username))
     return render_template('auth/signup.html')
+
+@blueprint.get('/logout')
+def logout():
+    return 'User logged out'
 
 @blueprint.route('/profile/<username>')
 def profile(username):
