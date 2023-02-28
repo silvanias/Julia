@@ -17,14 +17,24 @@ def get_login():
 
 @blueprint.post('/login')
 def post_login():
-    print(request.form)
-    email = request.form.get('email')
-    password = request.form.get('password')
+    try:
+        email = request.form.get('email')
+        password = request.form.get('password')
+        user = User.query.filter_by(email=email).first()
 
-    if email == "admin@admin" and password == "password":
-        flash('Logged in kinda', category='success')
-        return redirect(url_for('routes.profile' , username='admin'))
-    return render_template('auth/login.html')
+        if not user:
+            raise Exception('No user with the given email exists')
+        elif not check_password_hash(user.password, password=password):
+            # max limit?
+            raise Exception('Password incorrect')
+
+        flash(f'{user.username} logged in :D', category='success')
+        return redirect(url_for('routes.profile' , username=user.username))
+    
+    except Exception as error_message:
+        error = error_message or 'An error occurred while loggin in. Contact me on GitHub :)'
+        flash(error_message, category='error')
+        return render_template('auth/login.html')
 
 @blueprint.get('/signup')
 def get_signup(): 
