@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from juliaapp.extensions.database import db, CRUDMixin
+from flask_login import login_user, login_required, logout_user
 
 blueprint = Blueprint('routes', __name__)
 
@@ -27,7 +28,8 @@ def post_login():
         elif not check_password_hash(user.password, password=password):
             # max limit?
             raise Exception('Password incorrect')
-
+        
+        login_user(user)
         flash(f'{user.username} logged in :D', category='success')
         return redirect(url_for('routes.profile' , username=user.username))
     
@@ -58,6 +60,7 @@ def post_signup():
         
         new_user = User(email = email, username = username, password = generate_password_hash(password1, method = 'pbkdf2:sha256'))
         new_user.save()
+        login_user(new_user)
         flash('User Created!', category='success')
         return redirect(url_for('routes.profile' , username=username))
     
@@ -68,8 +71,10 @@ def post_signup():
 
 @blueprint.get('/logout')
 def logout():
-    return 'User logged out'
+    logout_user()
+    return redirect(url_for('routes.get_login'))
 
+@login_required
 @blueprint.route('/profile/<username>')
 def profile(username):
     user = User.query.filter_by(username=username).first_or_404()

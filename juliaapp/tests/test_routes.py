@@ -1,6 +1,11 @@
 from datetime import datetime
 from juliaapp.models import User
 from flask import request
+# Test list need to be done:
+    # Login takes you to your page 
+    # Login puts your name in the footer
+    # Logout logs you out 
+    # Logged in users can see their own page
 
 def test_login_content(client):
     # Returns landing content

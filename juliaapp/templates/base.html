@@ -31,6 +31,10 @@
         <a href="https://github.com/sikorosenai">
             <img class="GitHub" src="{{url_for('static', filename='images/github-mark-white.png')}}" alt="GitHub logo"/>
         </a>
+        {% if current_user.is_authenticated %}
+        <a> Logged in as {{ current_user.email }}</a>
+        <a href="{{ url_for('routes.logout') }}">Logout</a>
+        {% endif %}
     </footer>
 </body>
 </html>
