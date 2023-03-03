@@ -74,8 +74,8 @@ def logout():
     logout_user()
     return redirect(url_for('routes.get_login'))
 
-@login_required
 @blueprint.route('/profile/<username>')
+@login_required
 def profile(username):
     user = User.query.filter_by(username=username).first_or_404()
     all_users = User.query.filter_by(username=username).first()

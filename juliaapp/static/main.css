@@ -8,7 +8,7 @@
 https://codepen.io/sosuke/pen/Pjoqqp
 */
 
-/* { border: 1px solid green; } */
+* { border: 1px solid green; } 
 
 /* || General styles */
 
@@ -199,16 +199,16 @@ select:focus {
 /* || Footer styles */
 
 footer {
-  position: fixed;
   display: flex;
+  align-items: center;
   justify-content: center;
   left: 0;
   bottom: 0;
   width: 100%;
-  text-align: center;
-  background-color: #31313f;
-  object-fit: contain;
+  position: fixed;
+  background-color: hsl(240, 13%, 22%);
   overflow: hidden;
+  
   z-index: 2;
 }
 
@@ -218,9 +218,17 @@ footer {
   padding-bottom: 10px;
   height: 40px;
   width: 40px;
+  left:50%;
+  text-align: center;
 }
 
 .GitHub:hover {
   transform: scale(1.2);
+}
+
+.logout{
+  float: right;
+  margin-left: auto;
+  flex: 0 1 auto;
 }
 
