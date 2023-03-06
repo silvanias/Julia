@@ -1,6 +1,10 @@
 {% extends "base.html" %}
+{% block head %}
+<script defer src="{{ url_for('static', filename='gen.js') }}"></script>
+<title>Generate</title>
+{% endblock head %}
 {% block content %}
-    <h1> Generate your fractals here (eventually) </h1>
+    <h1 data-value="Generate fractals"> Generate fractals </h1>
     <form method="post">
         <div class="form-element">
             <input type="number" name="realnum" id="realnum" placeholder="Real Number">
