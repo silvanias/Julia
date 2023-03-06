@@ -8,7 +8,7 @@
 https://codepen.io/sosuke/pen/Pjoqqp
 */
 
-* { border: 1px solid green; } 
+/* { border: 1px solid green; } 
 
 /* || General styles */
 
@@ -48,6 +48,18 @@ input[type='number'] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+}
+
+/* || Landing styles */
+.hidden{
+  opacity: 0;
+  filter: blur(5px);
+  transition: all 2s;
+}
+
+.show{
+  opacity: 1;
+  filter: blur(0);
 }
 
 /* || Navbar styles */
