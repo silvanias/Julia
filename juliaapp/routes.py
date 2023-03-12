@@ -3,6 +3,15 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from juliaapp.extensions.database import db, CRUDMixin
 from flask_login import login_user, login_required, logout_user
+# Investigate what all these do
+from juliaapp.scripts.mplmandelbrot import pltrender 
+from io import BytesIO
+from flask import send_file
+import random
+import matplotlib
+matplotlib.use('agg')
+import matplotlib.pyplot as plt
+
 
 blueprint = Blueprint('routes', __name__)
 
@@ -88,6 +97,7 @@ def get_gen():
 @blueprint.post('/gen')
 def post_gen():
     try:
+        # TODO: dont allow empty form (add checks)  
         realnum = request.form.get('realnum')
         imagnum = request.form.get('imagnum')
         chosenSet = request.form.get('sets')
@@ -99,4 +109,47 @@ def post_gen():
         error = error_message or 'An unkown error occurred while creating a user. Contact me on github :)'
         flash(error, category='error')
         return render_template('gen.html', sets=sets)
+    
+
+@blueprint.route('/plot_gen')
+def plot_gen():
+    return render_template('plot_gen.html')
+
+@blueprint.route('/example1.png')
+def example1():
+    fig, ax = plt.subplots()
+    draw1(ax)
+    return nocache(fig_response(fig))
+
+def draw1(ax):
+    """Draw a random scatterplot"""
+    x = [random.random() for i in range(100)]
+    y = [random.random() for i in range(100)]
+    ax.scatter(x, y)
+    ax.set_title("Random scatterplot")
+
+def fig_response(fig):
+    """Turn a matplotlib Figure into Flask response"""
+    img_bytes = BytesIO()
+    fig.savefig(img_bytes)
+    img_bytes.seek(0)
+    return send_file(img_bytes, mimetype='image/png')
+
+def nocache(response):
+    """Add Cache-Control headers to disable caching a response"""
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    return response
+
+"""
+    try:
+        fig = pltrender()
+        output = io.BytesIO()
+        FigureCanvas(fig).print_png(output)
+        return Response(output.getvalue(), mimetype='image/png')
+
+    except Exception as error_message:
+        error = error_message or 'An unkown error occurred while creating a user. Contact me on github :)'
+        flash(error, category='error')
+        return render_template('gen.html', sets=sets)
+"""
     

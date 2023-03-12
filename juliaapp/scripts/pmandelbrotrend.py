@@ -1,6 +1,6 @@
 from PIL import Image
 
-from mandelbrot import MandelbrotSet
+from pmandelbrot import MandelbrotSet
 
 if __name__ == "__main__":
 
