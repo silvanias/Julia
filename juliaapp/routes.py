@@ -7,7 +7,6 @@ from flask_login import login_user, login_required, logout_user
 from juliaapp.scripts.mplmandelbrot import pltrender 
 from io import BytesIO
 from flask import send_file
-import random
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
@@ -118,15 +117,8 @@ def plot_gen():
 @blueprint.route('/example1.png')
 def example1():
     fig, ax = plt.subplots()
-    draw1(ax)
+    pltrender()
     return nocache(fig_response(fig))
-
-def draw1(ax):
-    """Draw a random scatterplot"""
-    x = [random.random() for i in range(100)]
-    y = [random.random() for i in range(100)]
-    ax.scatter(x, y)
-    ax.set_title("Random scatterplot")
 
 def fig_response(fig):
     """Turn a matplotlib Figure into Flask response"""
