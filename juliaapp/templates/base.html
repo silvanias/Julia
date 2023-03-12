@@ -13,7 +13,7 @@
 <body>
     <nav>
         <a href="{{ url_for('routes.landing') }}">About</a>
-        <a href="{{ url_for('routes.gen') }}">Generate</a>
+        <a href="{{ url_for('routes.get_gen') }}">Generate</a>
         <a href="{{ url_for('routes.get_login') }}">Login</a>
     </nav>
     {% with messages = get_flashed_messages(with_categories=true) %}

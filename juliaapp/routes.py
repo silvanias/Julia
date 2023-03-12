@@ -81,7 +81,22 @@ def profile(username):
     all_users = User.query.filter_by(username=username).first()
     return render_template('profile.html', user=user)
 
-@blueprint.route('/gen', methods=['GET', 'POST'])
-def gen():
-    all_users = User.query.all()
-    return render_template('gen.html', users=all_users, sets=sets)
+@blueprint.get('/gen')
+def get_gen():
+    return render_template('gen.html', sets=sets)
+
+@blueprint.post('/gen')
+def post_gen():
+    try:
+        realnum = request.form.get('realnum')
+        imagnum = request.form.get('imagnum')
+        chosenSet = request.form.get('sets')
+        print(chosenSet,imagnum,realnum)
+        flash('Form submitted', category='success')
+        return render_template('gen.html', sets=sets)
+
+    except Exception as error_message:
+        error = error_message or 'An unkown error occurred while creating a user. Contact me on github :)'
+        flash(error, category='error')
+        return render_template('gen.html', sets=sets)
+    
