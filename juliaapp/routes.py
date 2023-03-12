@@ -10,6 +10,7 @@ from flask import send_file
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
+import random
 
 
 blueprint = Blueprint('routes', __name__)
@@ -105,7 +106,7 @@ def post_gen():
         return render_template('gen.html', sets=sets)
 
     except Exception as error_message:
-        error = error_message or 'An unkown error occurred while creating a user. Contact me on github :)'
+        error = error_message or 'An unkown error occurred. Contact me on github :)'
         flash(error, category='error')
         return render_template('gen.html', sets=sets)
     
@@ -114,8 +115,9 @@ def post_gen():
 def plot_gen():
     return render_template('plot_gen.html')
 
-@blueprint.route('/example1.png')
-def example1():
+@blueprint.route('/mandelbrot.png')
+def mandelbrot():
+    #DO NOT DELETE UNUSED VARIABLE HERE
     fig, ax = plt.subplots()
     pltrender()
     return nocache(fig_response(fig))
