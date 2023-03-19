@@ -1,23 +1,19 @@
-from juliaapp.extensions.database import db
-from juliaapp.models import User
-from datetime import datetime
-
-def test_landing_success(client):
-    # Page loads
+def test_landing_success(client, assertStatusCode2xx):
     response = client.get('/')
-    assert response.status_code == 200 
+    assert b'<title>Landing</title>' in response.data
+    assertStatusCode2xx(response.status_code)  
 
-def test_login_success(client):
-    # Page loads
+def test_login_success(client, assertStatusCode2xx):
     response = client.get('/login')
-    assert response.status_code == 200
+    assert b'<title>Login</title>' in response.data
+    assertStatusCode2xx(response.status_code)
 
-def test_signup_success(client):
-    # Page loads
+def test_signup_success(client, assertStatusCode2xx):
     response = client.get('/signup')
-    assert response.status_code == 200
+    assert b'<title>Signup</title>' in response.data
+    assertStatusCode2xx(response.status_code) 
 
-def test_generate_success(client):
-    # Page loads
+def test_generate_success(client, assertStatusCode2xx):
     response = client.get('/gen')
-    assert response.status_code == 200
+    assert b'<title>Generate</title>' in response.data
+    assertStatusCode2xx(response.status_code) 

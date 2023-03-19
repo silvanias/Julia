@@ -3,6 +3,7 @@ import pytest
 from juliaapp.app import create_app
 from os import environ
 from flask_migrate import upgrade
+from dotenv.main import load_dotenv
 
 @pytest.fixture
 def client():
@@ -12,3 +13,11 @@ def client():
     with app.app_context():
         upgrade()
         yield app.test_client()
+
+@pytest.fixture
+def assertStatusCode2xx():
+    def assertStatusCode2xx(status_code: int):
+        assert status_code >= 200
+        assert status_code < 300
+        
+    return assertStatusCode2xx 
