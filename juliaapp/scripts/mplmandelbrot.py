@@ -27,8 +27,3 @@ def pltrender():
     plt.axis("off")
     plt.tight_layout()
     return plt.plot()
-
-
-
-
-

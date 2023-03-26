@@ -2,6 +2,7 @@
 import pytest
 from juliaapp.app import create_app
 from juliaapp.extensions.database import db
+from juliaapp.config import Config
 from os import environ
 from flask_migrate import upgrade
 from dotenv.main import load_dotenv
@@ -13,7 +14,9 @@ def config():
 
     Instead of a persistent postgresql, tests use an in-memory sqlite database by default. This way, changes aren't persisted across test runs.
     """
-    environ["DATABASE_URL"] = 'sqlite://' 
+    return Config(
+        database_url= 'sqlite://'
+    ) 
 
 @pytest.fixture
 def app(config):

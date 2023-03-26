@@ -52,7 +52,7 @@ def test_user_nonunique_email_fail(client):
     'email':'user@test.com',
     'password1':'password',
     'password2':'password'
-    }, )
+    })
     response = client.post('/signup', data={
     'username':'test', 
     'email':'user@test.com',
