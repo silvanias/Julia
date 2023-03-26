@@ -44,13 +44,15 @@ def test_user_created_flash(client):
     assert b'<div class="alert success">' in response.data
     assert b'User Created!' in response.data 
 
+
+# Ask about this one!
 def test_user_nonunique_email_fail(client):
     response = client.post('/signup', data={
     'username':'test', 
     'email':'user@test.com',
     'password1':'password',
     'password2':'password'
-    })
+    }, )
     response = client.post('/signup', data={
     'username':'test', 
     'email':'user@test.com',
