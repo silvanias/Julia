@@ -21,7 +21,7 @@ def get_members(c, num_iterations):
 
 
 def pltrender():
-    input_color = "FFFF00"
+    input_color = "FF0000"
     rgb_color = colors.to_rgb("#" + input_color)
     rgb_color = tuple(255*x for x in rgb_color)
     c = complex_matrix(-2, 0.5, -1.5, 1.5, pixel_density=512)
