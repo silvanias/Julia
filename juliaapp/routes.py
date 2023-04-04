@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from .models import User
+from .models import User, Fractal
 from werkzeug.security import generate_password_hash, check_password_hash
 from juliaapp.extensions.database import db, CRUDMixin
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from juliaapp.extensions.authentication import login_manager
 # Investigate what all these do
 from juliaapp.scripts.mplmandelbrot import pltrender 
@@ -106,9 +106,8 @@ def post_gen():
         hexval = request.form.get('hexval')
         if len(hexval) < 6 or len(hexval) > 6:
             raise Exception('Please enter a valid hex value')
-        
         chosenSet = request.form.get('sets')
-        print(chosenSet,imagnum,realnum,hexval)
+        Fractal(fractal_type=chosenSet,hex_value=hexval,user_id=current_user.id).save()
         flash('Form submitted', category='success')
         return render_template('gen.html', sets=sets)
 

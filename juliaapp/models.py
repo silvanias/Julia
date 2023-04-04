@@ -18,5 +18,5 @@ class MyEnum(enum.Enum):
 class Fractal(db.Model, CRUDMixin):
     id = db.Column(db.Integer, primary_key=True)
     fractal_type = db.Column(Enum(MyEnum))
-    hex_value = db.Column(db.Integer, unique=True)
+    hex_value = db.Column(db.String(6), unique=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

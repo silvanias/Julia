@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.colors as colors
 import numpy as np
 
 def complex_matrix(xmin, xmax, ymin, ymax, pixel_density):
@@ -20,6 +21,9 @@ def get_members(c, num_iterations):
 
 
 def pltrender():
+    input_color = "000000"
+    rgb_color = colors.to_rgb("#" + input_color)
+    print(rgb_color)
     c = complex_matrix(-2, 0.5, -1.5, 1.5, pixel_density=512)
     membership = is_stable(c, num_iterations=20)
 
