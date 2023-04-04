@@ -118,7 +118,7 @@ def plot_gen():
 @blueprint.route('/mandelbrot.png')
 def mandelbrot():
     #DO NOT DELETE UNUSED VARIABLE HERE
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(facecolor=('#28282f'))
     pltrender()
     return nocache(fig_response(fig))
 

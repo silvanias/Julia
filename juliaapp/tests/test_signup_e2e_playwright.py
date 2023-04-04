@@ -1,13 +1,12 @@
 from playwright.sync_api import Page, expect
 import re
 # Mocking, how to do it (postgres vs sqlite)
-# How far should a user go on an e2ee
-# How do you comment out a bunch of lines at once in python vs code? 
+# pytest -v --slowmo 1000  --headed   
 
-"""
+'''
 def test_signup_flow(page: Page):
     # TODO: GIVE PLAYWRIGHT TESTS LOCAL LAUNCH/DB etc.
-    page.goto("http://127.0.0.1:5000/")
+    page.goto("http://127.0.0.1:5001")
     expect(page).to_have_title(re.compile("Landing"))
 
     body = page.locator("body")
@@ -25,6 +24,4 @@ def test_signup_flow(page: Page):
     page.get_by_placeholder("Confirm Password").fill("password12345")
 
     page.get_by_role("button", name="Signup").click()
-    expect(page).to_have_url(re.compile(".*incertus"))
-"""
-    
+    expect(page).to_have_url(re.compile(".*incertus"))    '''

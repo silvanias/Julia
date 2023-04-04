@@ -3,7 +3,7 @@ import pytest
 from juliaapp.app import create_app
 from juliaapp.extensions.database import db
 from juliaapp.config import Config
-from os import environ
+from os import environ, system
 from flask_migrate import upgrade
 from dotenv.main import load_dotenv
 
@@ -27,22 +27,22 @@ def app(config):
 
 @pytest.fixture
 def client(app):
-    #environ["DATABASE_URL"] = 'sqlite://'
-    #app = create_app()
-
     with app.app_context():
         upgrade()
         yield app.test_client()
         db.drop_all()
 
 @pytest.fixture
-def e2e_host():
+def e2e_host(app):
     """
     Load the base url to make requests to in End-to-End tests from the .env file or environment variables.
     """
     load_dotenv()
     port = environ.get("E2E_APP_PORT", "")
-    return "http://localhost:" + port
+    with app.app_context():
+        upgrade()
+        yield app.test_client()
+        
 
 @pytest.fixture
 def assertStatusCode2xx():
@@ -50,4 +50,4 @@ def assertStatusCode2xx():
         assert status_code >= 200
         assert status_code < 300
         
-    return assertStatusCode2xx 
+    return assertStatusCode2xx

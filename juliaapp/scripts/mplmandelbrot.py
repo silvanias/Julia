@@ -21,9 +21,19 @@ def get_members(c, num_iterations):
 
 def pltrender():
     c = complex_matrix(-2, 0.5, -1.5, 1.5, pixel_density=512)
+    membership = is_stable(c, num_iterations=20)
 
-    plt.imshow(is_stable(c, num_iterations=20), cmap="binary")
-    plt.gca().set_aspect("equal")
+    # Create RGB array with the same shape as membership
+    height, width = membership.shape
+    rgb_array = np.zeros((height, width, 3), dtype=np.uint8)
+
+    # Set RGB values based on membership
+    rgb_array[membership, :] = [255, 255, 255]
+    # For points not in the set
+    rgb_array[~membership, :] = [40, 40, 47] 
+
+    plt.imshow(rgb_array, vmin=0, vmax=255)
+    # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.gca.html
     plt.axis("off")
-    plt.tight_layout()
+    plt.tight_layout(h_pad=0, w_pad=0)
     return plt.plot()
