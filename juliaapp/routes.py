@@ -3,6 +3,7 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from juliaapp.extensions.database import db, CRUDMixin
 from flask_login import login_user, login_required, logout_user
+from juliaapp.extensions.authentication import login_manager
 # Investigate what all these do
 from juliaapp.scripts.mplmandelbrot import pltrender 
 from io import BytesIO
@@ -10,6 +11,7 @@ from flask import send_file
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
+
 
 
 blueprint = Blueprint('routes', __name__)
@@ -138,6 +140,11 @@ def nocache(response):
     """Add Cache-Control headers to disable caching a response"""
     response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     return response
+
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect(url_for('routes.get_login'))
+
 
 """
     try:
