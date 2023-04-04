@@ -12,7 +12,7 @@ class User(db.Model, CRUDMixin, UserMixin):
     fractals = db.relationship('Fractal', backref='user', lazy=True)
 
 class MyEnum(enum.Enum):
-    mandel = 1
+    mandelbrot = 1
     julia = 2    
 
 class Fractal(db.Model, CRUDMixin):

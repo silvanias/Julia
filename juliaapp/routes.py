@@ -22,6 +22,7 @@ sets = ['mandelbrot', 'julia']
 def landing():
     return render_template('landing.html')
 
+#REMOVE OPTION TO LOG IN IF ALREADY LOGGED IN
 @blueprint.get('/login')
 def get_login():
     return render_template('auth/login.html')
@@ -95,7 +96,8 @@ def profile(username):
 @blueprint.get('/gen')
 @login_required
 def get_gen():
-    return render_template('gen.html', sets=sets)
+    print(Fractal.query.filter_by(user_id=current_user.id).all())
+    return render_template('gen.html', sets=sets, renders=Fractal.query.filter_by(user_id=current_user.id).all())
 
 @blueprint.post('/gen')
 def post_gen():
@@ -104,6 +106,7 @@ def post_gen():
         realnum = request.form.get('realnum')
         imagnum = request.form.get('imagnum')
         hexval = request.form.get('hexval')
+        #CHECK IF THE HEX VALUE IS TAKEN OR NOT
         if len(hexval) < 6 or len(hexval) > 6:
             raise Exception('Please enter a valid hex value')
         chosenSet = request.form.get('sets')
@@ -115,17 +118,12 @@ def post_gen():
         error = error_message or 'An unkown error occurred. Contact me on github :)'
         flash(error, category='error')
         return render_template('gen.html', sets=sets)
-    
 
-@blueprint.route('/plot_gen')
-def plot_gen():
-    return render_template('plot_gen.html')
-
-@blueprint.route('/mandelbrot.png')
-def mandelbrot():
+@blueprint.route('/mandelbrot/<slug>')
+def mandelbrot(slug):
     #DO NOT DELETE UNUSED VARIABLE HERE
     fig, ax = plt.subplots(facecolor=('#28282f'))
-    pltrender()
+    pltrender(slug)
     return nocache(fig_response(fig))
 
 def fig_response(fig):

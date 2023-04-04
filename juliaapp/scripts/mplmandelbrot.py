@@ -14,14 +14,13 @@ def is_stable(c, num_iterations):
         z = z**2 + c
     return abs(z) <= 2
 
-
 def get_members(c, num_iterations):
     mask = is_stable(c, num_iterations)
     return c[mask]
 
 
-def pltrender():
-    input_color = "FF0000"
+def pltrender(slug):
+    input_color = str(slug)
     rgb_color = colors.to_rgb("#" + input_color)
     rgb_color = tuple(255*x for x in rgb_color)
     c = complex_matrix(-2, 0.5, -1.5, 1.5, pixel_density=512)
