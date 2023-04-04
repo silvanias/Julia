@@ -90,7 +90,9 @@ def profile(username):
     all_users = User.query.filter_by(username=username).first()
     return render_template('profile.html', user=user)
 
+
 @blueprint.get('/gen')
+@login_required
 def get_gen():
     return render_template('gen.html', sets=sets)
 
