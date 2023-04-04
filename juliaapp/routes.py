@@ -10,12 +10,11 @@ from flask import send_file
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
-import random
 
 
 blueprint = Blueprint('routes', __name__)
 
-sets = ['julia', 'mandelbrot']
+sets = ['mandelbrot', 'julia']
 
 @blueprint.route('/')
 def landing():
@@ -102,8 +101,12 @@ def post_gen():
         # TODO: dont allow empty form (add checks)  
         realnum = request.form.get('realnum')
         imagnum = request.form.get('imagnum')
+        hexval = request.form.get('hexval')
+        if len(hexval) < 6 or len(hexval) > 6:
+            raise Exception('Please enter a valid hex value')
+        
         chosenSet = request.form.get('sets')
-        print(chosenSet,imagnum,realnum)
+        print(chosenSet,imagnum,realnum,hexval)
         flash('Form submitted', category='success')
         return render_template('gen.html', sets=sets)
 
