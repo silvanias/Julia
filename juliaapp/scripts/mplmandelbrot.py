@@ -21,9 +21,9 @@ def get_members(c, num_iterations):
 
 
 def pltrender():
-    input_color = "000000"
+    input_color = "FFFF00"
     rgb_color = colors.to_rgb("#" + input_color)
-    print(rgb_color)
+    rgb_color = tuple(255*x for x in rgb_color)
     c = complex_matrix(-2, 0.5, -1.5, 1.5, pixel_density=512)
     membership = is_stable(c, num_iterations=20)
 
@@ -32,7 +32,7 @@ def pltrender():
     rgb_array = np.zeros((height, width, 3), dtype=np.uint8)
 
     # Set RGB values based on membership
-    rgb_array[membership, :] = [255, 255, 255]
+    rgb_array[membership, :] = [rgb_color[0], rgb_color[1], rgb_color[2]]
     # For points not in the set
     rgb_array[~membership, :] = [40, 40, 47] 
 
