@@ -25,6 +25,8 @@ def landing():
 #REMOVE OPTION TO LOG IN IF ALREADY LOGGED IN
 @blueprint.get('/login')
 def get_login():
+    if current_user.is_authenticated:
+        return redirect(url_for('routes.landing'))
     return render_template('auth/login.html')
 
 @blueprint.post('/login')
@@ -51,6 +53,8 @@ def post_login():
 
 @blueprint.get('/signup')
 def get_signup(): 
+    if current_user.is_authenticated:
+        return redirect(url_for('routes.landing'))
     return render_template('auth/signup.html')
 
 @blueprint.post('/signup')
