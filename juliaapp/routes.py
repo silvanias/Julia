@@ -43,7 +43,7 @@ def post_login():
             raise Exception('Password incorrect')
         
         login_user(user)
-        flash(f'{user.username} logged in :D', category='success')
+        flash(f'Welcome back {user.username} :D', category='success')
         return redirect(url_for('routes.profile' , username=user.username))
     
     except Exception as error_message:
@@ -110,10 +110,13 @@ def post_gen():
         realnum = request.form.get('realnum')
         imagnum = request.form.get('imagnum')
         hexval = request.form.get('hexval')
-        #CHECK IF THE HEX VALUE IS TAKEN OR NOT
+        chosenSet = request.form.get('sets')
+
         if len(hexval) < 6 or len(hexval) > 6:
             raise Exception('Please enter a valid hex value')
-        chosenSet = request.form.get('sets')
+        elif Fractal.query.filter_by(hex_value=hexval).first():
+            raise Exception('Hex value is taken by another user')
+
         Fractal(fractal_type=chosenSet,hex_value=hexval,user_id=current_user.id).save()
         flash('Form submitted', category='success')
         return render_template('gen.html', sets=sets)
