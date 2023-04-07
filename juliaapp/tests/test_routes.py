@@ -6,6 +6,7 @@ from flask import request
     # Login puts your name in the footer
     # Logout logs you out 
     # Logged in users can see their own page
+    # Invalid hex values break the page
 
 def test_login_content(client):
     # Returns landing content

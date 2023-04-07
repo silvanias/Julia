@@ -10,6 +10,7 @@ from flask import send_file
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
+import re
 
 
 blueprint = Blueprint('routes', __name__)
@@ -105,12 +106,13 @@ def post_gen():
         imagnum = request.form.get('imagnum')
         hexval = request.form.get('hexval')
         chosenSet = request.form.get('sets')
-
+        chosenSet = "\"" + chosenSet + "\""
+        chosenSet = re.sub('"', '', chosenSet)
         if len(hexval) < 6 or len(hexval) > 6:
             raise Exception('Please enter a valid hex value')
         elif Fractal.query.filter_by(hex_value=hexval).first():
             raise Exception('Hex value is taken by another user')
-
+        #ADD CHECK FOR VALID HEX VALUE
         Fractal(fractal_type=chosenSet,hex_value=hexval,user_id=current_user.id).save()
         flash('Form submitted', category='success')
         return render_template('gen.html', sets=sets)
