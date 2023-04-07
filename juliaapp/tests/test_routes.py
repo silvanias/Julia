@@ -47,7 +47,7 @@ def test_user_created_flash(client):
 
 # Ask about this one!
 def test_user_nonunique_email_fail(client):
-    response = client.post('/signup', data={
+    client.post('/signup', data={
     'username':'test', 
     'email':'user@test.com',
     'password1':'password',
@@ -59,6 +59,8 @@ def test_user_nonunique_email_fail(client):
     'password1':'password',
     'password2':'password'
     })
+    assert b'<div class="alert error">' in response.data
+    assert User.query.count() == 1
 
 def test_signup_content(client):
     # Returns landing content
@@ -78,3 +80,8 @@ def test_signup_flash_not_matched_passwords(client):
     }, follow_redirects=True) 
     assert b'<div class="alert error">' in response.data
     assert b'Passwords must match' in response.data
+
+def test_generate_restricted(client, assertStatusCode2xx):
+    response = client.get('/gen', follow_redirects=True)
+    assert b'<title>Login</title>' in response.data
+    assertStatusCode2xx(response.status_code) 

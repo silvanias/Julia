@@ -4,7 +4,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from juliaapp.extensions.database import db, CRUDMixin
 from flask_login import login_user, login_required, logout_user, current_user
 from juliaapp.extensions.authentication import login_manager
-# Investigate what all these do
 from juliaapp.scripts.mplmandelbrot import pltrender 
 from io import BytesIO
 from flask import send_file
@@ -13,16 +12,13 @@ matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 
-
 blueprint = Blueprint('routes', __name__)
-
 sets = ['mandelbrot', 'julia']
 
 @blueprint.route('/')
 def landing():
     return render_template('landing.html')
 
-#REMOVE OPTION TO LOG IN IF ALREADY LOGGED IN
 @blueprint.get('/login')
 def get_login():
     if current_user.is_authenticated:
@@ -39,7 +35,6 @@ def post_login():
         if not user:
             raise Exception('No user with the given email exists')
         elif not check_password_hash(user.password, password=password):
-            # max limit?
             raise Exception('Password incorrect')
         
         login_user(user)
@@ -105,8 +100,7 @@ def get_gen():
 
 @blueprint.post('/gen')
 def post_gen():
-    try:
-        # TODO: dont allow empty form (add checks)  
+    try: 
         realnum = request.form.get('realnum')
         imagnum = request.form.get('imagnum')
         hexval = request.form.get('hexval')
@@ -148,18 +142,4 @@ def nocache(response):
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     return redirect(url_for('routes.get_login'))
-
-
-"""
-    try:
-        fig = pltrender()
-        output = io.BytesIO()
-        FigureCanvas(fig).print_png(output)
-        return Response(output.getvalue(), mimetype='image/png')
-
-    except Exception as error_message:
-        error = error_message or 'An unkown error occurred while creating a user. Contact me on github :)'
-        flash(error, category='error')
-        return render_template('gen.html', sets=sets)
-"""
     

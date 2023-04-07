@@ -6,6 +6,8 @@ from juliaapp.config import Config
 from os import environ, system
 from flask_migrate import upgrade
 from dotenv.main import load_dotenv
+from flask_login import login_user
+from juliaapp.models import User
 
 @pytest.fixture
 def config():
@@ -42,7 +44,6 @@ def e2e_host(app):
     with app.app_context():
         upgrade()
         yield app.test_client()
-        
 
 @pytest.fixture
 def assertStatusCode2xx():

@@ -11,7 +11,7 @@ class TestMandelbrot(unittest.TestCase):
         plt.gca().set_aspect("equal")
         plt.axis("off")
         plt.tight_layout()
-        self.assertEqual(plt.plot(), pltrender())
+        self.assertEqual(plt.plot(), pltrender("FFFFFF"))
      
 
 if __name__ == '__main__':
