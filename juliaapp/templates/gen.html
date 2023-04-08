@@ -29,7 +29,7 @@
         <div class="gen_fracs">
             {% for render in renders %}
             <div class="gen_frac">
-                <img src="/mandelbrot/{{ render.hex_value }}" alt="my plot">
+                <img src="/mandelbrot/{{ render.hex_value }}" alt="Coloured picture of mandelbrot">
             </div>
             {% endfor %}
             <!-- MULTIPLE FRACTALS ARE CURRENTLY BROKEN -->
@@ -44,4 +44,6 @@
             -->
         </div> 
     </section>
+
+    <br>
 {% endblock content %}

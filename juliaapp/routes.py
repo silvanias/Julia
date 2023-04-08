@@ -95,7 +95,6 @@ def profile(username):
 @blueprint.get('/gen')
 @login_required
 def get_gen():
-    print(Fractal.query.filter_by(user_id=current_user.id).all())
     return render_template('gen.html', sets=sets, renders=Fractal.query.filter_by(user_id=current_user.id).all())
 
 @blueprint.post('/gen')
@@ -105,22 +104,19 @@ def post_gen():
         imagnum = request.form.get('imagnum')
         hexval = request.form.get('hexval')
         chosenSet = request.form.get('sets')
-        chosenSet = re.sub('\"', '', chosenSet)
-        chosenSet = re.sub('\'', '', chosenSet)
-
-        if len(hexval) < 6 or len(hexval) > 6:
+        if not re.search("^([0-9A-F]{6})$", hexval):
             raise Exception('Please enter a valid hex value')
         elif Fractal.query.filter_by(hex_value=hexval).first():
             raise Exception('Hex value is taken by another user')
-        #ADD CHECK FOR VALID HEX VALUE
-        Fractal(fractal_type="mandelbrot",hex_value=hexval,user_id=current_user.id).save()
+        # Production db failing on this step
+        Fractal(fractal_type=chosenSet,hex_value=hexval,user_id=current_user.id).save()
         flash('Form submitted', category='success')
-        return render_template('gen.html', sets=sets)
+        return render_template('gen.html', sets=sets, renders=Fractal.query.filter_by(user_id=current_user.id).all())
 
     except Exception as error_message:
         error = error_message or 'An unkown error occurred. Contact me on github :)'
         flash(error, category='error')
-        return render_template('gen.html', sets=sets)
+        return render_template('gen.html', sets=sets, renders=Fractal.query.filter_by(user_id=current_user.id).all())
 
 @blueprint.route('/mandelbrot/<slug>')
 def mandelbrot(slug):
