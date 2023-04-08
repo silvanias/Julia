@@ -113,7 +113,7 @@ def post_gen():
         elif Fractal.query.filter_by(hex_value=hexval).first():
             raise Exception('Hex value is taken by another user')
         #ADD CHECK FOR VALID HEX VALUE
-        Fractal(fractal_type=chosenSet,hex_value=hexval,user_id=current_user.id).save()
+        Fractal(fractal_type="mandelbrot",hex_value=hexval,user_id=current_user.id).save()
         flash('Form submitted', category='success')
         return render_template('gen.html', sets=sets)
 
