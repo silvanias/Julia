@@ -80,9 +80,20 @@ def post_signup():
         return render_template('auth/signup.html')
 
 @blueprint.get('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('routes.get_login'))
+
+@blueprint.route('/delete_user')
+@login_required
+def delete_user():
+    curr_user = User.query.filter_by(id=current_user.id).first_or_404()
+    all_user_fractals =Fractal.query.filter_by(user_id=current_user.id).all()
+    for frac in all_user_fractals:
+        frac.delete()
+    curr_user.delete()
+    return redirect(url_for('routes.landing'))
 
 @blueprint.route('/profile/<username>')
 @login_required

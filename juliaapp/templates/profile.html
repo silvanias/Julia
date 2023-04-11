@@ -4,4 +4,6 @@
 {% endblock head %}
 {% block content %}
     <p>Username = {{ user.username }}, Email = {{user.email}}</p>
+    <a href="{{ url_for('routes.delete_user') }}" class="delete-button"> Delete profile!</a>
+    <p> Delete user (cannot be undone), all fractals will be returned to the abyss! </p>
 {% endblock content %}

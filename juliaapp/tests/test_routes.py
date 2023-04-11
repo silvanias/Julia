@@ -7,6 +7,8 @@ from flask import request
     # Logout logs you out 
     # Logged in users can see their own page
     # Invalid hex values break the page
+    # delete_user route deletes a user
+    # Test db constraints (delete user without deleting fractals)
 
 def test_login_content(client):
     # Returns landing content
