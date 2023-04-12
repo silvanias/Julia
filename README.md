@@ -43,15 +43,15 @@
 
 ### Built With
 
-> The front end of the website is all done in plain HTML, CSS and JavaScript. 
-> The production database is saved on PostgreSQL, with the local db using SQLite. 
-> The rendering of the Mandelbrot set is done entirely in python with the matplotlib library used for visualisation.
-> All other backend functions are handled with Flask.
+The front end of the website is all done in plain HTML, CSS and JavaScript. 
+The production database is saved on PostgreSQL, with the local db using SQLite. 
+The rendering of the Mandelbrot set is done entirely in python with the matplotlib library used for visualisation.
+All other backend functions are handled with Flask.
 
 ## Getting Started
 ### Prerequisites
 
-> All you need to get started is to have Python 3.10.9 or later installed on your machine.
+All you need to get started is to have Python 3.10.9 or later installed on your machine.
 
 ### Install requirements
 
@@ -61,7 +61,7 @@ $ source env/bin/activate
 $ pip install -r requirements.txt
 ```
 ### Add environment variables
-> Create a .env file in the root directory and add the following variables:
+Create a .env file in the root directory and add the following variables:
 SECRET_KEY='changethissecretkey'
 FLASK_APP='julia/main.py'
 DATABASE_URL='sqlite:///database.db'
@@ -94,7 +94,7 @@ $ gunicorn main:app
 
 ## Support
 
-> If you need any help please feel free to reach out to me at the email address listed on my GitHub profile 😄.
+If you need any help please feel free to reach out to me at the email address listed on my GitHub profile 😄.
 
 - [GitHub issues](https://github.com/sikorosenai/Julia/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+)
 - Contact options listed on [this GitHub profile](https://github.com/sikorosenai)
