@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://github.com/sikorosenai/Julia">
+  <a href="https://julia-y16w.onrender.com">
     <img src="docs/images/Screenshot 2023-04-12 at 10.07.32.png" alt="Logo" width="240" height="100">
   </a>
 </h1>
@@ -28,9 +28,10 @@
 
 ## About
 
-> Julia is a website which allows users to create accounts and then uniquely pair coloured renders of the mandelbrot set to said account.
-> In the future it would be great to be able to allow a user to zoom into specific parts of the mandelbrot set.
-> The website is not meant to have many practical applications, it is simply a demonstration of my technical knowledge.
+Julia is a website which allows users to create accounts and then uniquely pair coloured renders of the mandelbrot set to said account.
+In the future it would be great to be able to allow a user to zoom into specific parts of the mandelbrot set.
+The website is not meant to have many practical applications, it is simply a demonstration of my technical knowledge. The website is currently deployed, however it is highly recommended to run locally as it will avoid errors.
+<a href="https://julia-y16w.onrender.com">
 <details>
 <summary>Screenshots</summary>
 <br>
