@@ -1,21 +1,16 @@
 <h1 align="center">
   <a href="https://github.com/sikorosenai/Julia">
     <!-- Please provide path to your logo here -->
-    <img src="docs/images/logo.svg" alt="Logo" width="100" height="100">
+    <img src="docs/images/Screenshot 2023-04-12 at 10.07.32.png" alt="Logo" width="100" height="100">
   </a>
 </h1>
 
 <div align="center">
   Julia
   <br />
-  <a href="#about"><strong>Explore the screenshots »</strong></a>
+  <a href="#about"><strong>Checkout the screenshots »</strong></a>
   <br />
   <br />
-  <a href="https://github.com/sikorosenai/Julia/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
-  ·
-  <a href="https://github.com/sikorosenai/Julia/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
-  .
-  <a href="https://github.com/sikorosenai/Julia/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
 </div>
 
 <details open="open">
@@ -27,9 +22,6 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Roadmap](#roadmap)
-- [Support](#support)
-- [Contributing](#contributing)
 
 </details>
 
@@ -37,74 +29,73 @@
 
 ## About
 
-> **[?]**
-> Provide general information about your project here.
-> What problem does it (intend to) solve?
-> What is the purpose of your project?
-> Why did you undertake it?
-> You don't have to answer all the questions -- just the ones relevant to your project.
-
+> Julia is a website which allows users to create accounts and then uniquely pair coloured renders of the mandelbrot set to said account.
+> In the future it would be great to be able to allow a user to zoom into specific parts of the mandelbrot set.
+> The website is not meant to have many practical applications, it is simply a demonstration of my technical knowledge.
 <details>
 <summary>Screenshots</summary>
 <br>
 
-> **[?]**
-> Please provide your screenshots here.
-
-|                               Home Page                               |                               Login Page                               |
+|                               Landing Page                               |                                Generate Page                               |
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/screenshot.png" title="Home Page" width="100%"> | <img src="docs/images/screenshot.png" title="Login Page" width="100%"> |
+| <img src="docs/images/Screenshot 2023-04-12 at 10.06.19.png" title="Landing Page" width="100%"> | <img src="docs/images/Screenshot 2023-04-12 at 10.05.51.png" title="Generate Page" width="100%">|
 
 </details>
 
 ### Built With
 
-> **[?]**
-> Please provide the technologies that are used in the project.
+> The front end of the website is all done in plain HTML, CSS and JavaScript. 
+> The production database is saved on PostgreSQL, with the local db using SQLite. 
+> The rendering of the Mandelbrot set is done entirely in python with the matplotlib library used for visualisation.
+> All other backend functions are handled with Flask.
 
 ## Getting Started
-
 ### Prerequisites
 
-> **[?]**
-> What are the project requirements/dependencies?
+> All you need to get started is to have Python 3.10.9 or later installed on your machine.
 
-### Installation
+### Install requirements
 
-> **[?]**
-> Describe how to install and get started with the project.
+```sh
+$ python -m venv env
+$ source env/bin/activate
+$ pip install -r requirements.txt
+```
+### Add environment variables
+> Create a .env file in the root directory and add the following variables:
+SECRET_KEY='changethissecretkey'
+FLASK_APP='julia/main.py'
+DATABASE_URL='sqlite:///database.db'
+DEBUG=True
+E2E_APP_PORT=5001
+> To avoid a bug please also run this command:
+```sh
+$ export FLASK_APP=julia/main.py
+``` 
 
+### Set up db
+
+```sh
+$ flask db init
+$ flask db upgrade
+```
+
+### Run the tests
+```sh
+$ pytest -v
+```
+> The tests are currently not complete, but they do test the main functionality of the website.
 ## Usage
 
-> **[?]**
-> How does one go about using it?
-> Provide various use cases and code examples here.
-
-## Roadmap
-
-See the [open issues](https://github.com/sikorosenai/Julia/issues) for a list of proposed features (and known issues).
-
-- [Top Feature Requests](https://github.com/sikorosenai/Julia/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Top Bugs](https://github.com/sikorosenai/Julia/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Newest Bugs](https://github.com/sikorosenai/Julia/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+> To run the website locally, run the following command:
+```sh
+$ gunicorn main:app
+```
+> The website will then be available at http://localhost:8000/, and you will be able to create an account and generate your own mandelbrot set.
 
 ## Support
 
-> **[?]**
-> Provide additional ways to contact the project maintainer/maintainers.
-
-Reach out to the maintainer at one of the following places:
+> If you need any help please feel free to reach out to me at the email address listed on my GitHub profile 😄.
 
 - [GitHub issues](https://github.com/sikorosenai/Julia/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+)
 - Contact options listed on [this GitHub profile](https://github.com/sikorosenai)
-
-
-## Contributing
-
-
-
-Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you for being involved!
-
-
-
-
