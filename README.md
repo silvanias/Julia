@@ -1,7 +1,6 @@
 <h1 align="center">
   <a href="https://github.com/sikorosenai/Julia">
-    <!-- Please provide path to your logo here -->
-    <img src="docs/images/Screenshot 2023-04-12 at 10.07.32.png" alt="Logo" width="100" height="100">
+    <img src="docs/images/Screenshot 2023-04-12 at 10.07.32.png" alt="Logo" width="100%" height="100">
   </a>
 </h1>
 
