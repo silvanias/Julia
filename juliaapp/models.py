@@ -14,10 +14,6 @@ class User(db.Model, CRUDMixin, UserMixin):
     creation_date = db.Column(db.DateTime(timezone = True), default = func.now())
     fractals = db.relationship('Fractal', backref='user', lazy=True)
 
-class MyEnum(Enum):
-    mandelbrot = 1
-    julia = 2    
-
 class Fractal(db.Model, CRUDMixin):
     id = db.Column(db.Integer, primary_key=True)
     fractal_type = db.Column(sets_enum, nullable=False)
