@@ -29,10 +29,9 @@
 
 ## About
 
-Julia is a website which allows users to create accounts and then uniquely pair coloured renders of the mandelbrot set to said account.
+<a href="https://julia-y16w.onrender.com">Julia is a website which allows users to create accounts and then uniquely pair coloured renders of the mandelbrot set to said account.</a>
 In the future it would be great to be able to allow a user to zoom into specific parts of the mandelbrot set.
 The website is not meant to have many practical applications, it is simply a demonstration of my technical knowledge. The website is currently deployed, however it is highly recommended to run locally as it will avoid errors.
-<a href="https://julia-y16w.onrender.com">
 <details>
 <summary>Screenshots</summary>
 <br>
@@ -53,29 +52,29 @@ All other backend functions are handled with Flask.
 ### Architecture
 The below diagram does not show all endpoints and functions, but it does show the primary ones relating to displaying and rendering fractals.
 
-  +-----------------------------------------------+
-  |           User Interface (HTML, CSS, JS)      |
-  +-----------------------------------------------+
-              ^                ^
-              |                |
-              v                v
-  +-----------------------------------------------+
-  |                    Flask App                   |
-  +-----------------------------------------------+
-  |                  /generate                     | 
-  |                  generate() API                |
-  |                  /mandelbrot/<query params>    |
-  |                  mandelbrot(slug)              | <--> Renders Mandelbrot Set and returns image
-  +-----------------------------------------------+
-              ^                ^
-              |                |
-              v                v
-  +-----------------------------------------------+
-  |                   PostgreSQL                  |
-  +-----------------------------------------------+
-  |                 Users Table                   |
-  |                 Fractals Table                |
-  +-----------------------------------------------+
+  +-----------------------------------------------+  
+  |           User Interface (HTML, CSS, JS)      |  
+  +-----------------------------------------------+  
+              ^                ^  
+              |                |  
+              v                v  
+  +-----------------------------------------------+  
+  |                    Flask App                  |  
+  +-----------------------------------------------+  
+  |                  /generate                     |   
+  |                  generate() API                |  
+  |                  /mandelbrot/\<query params>    |  
+  |                  mandelbrot(slug)              | <--> Renders Mandelbrot Set and returns image  
+  +-----------------------------------------------+  
+              ^                ^  
+              |                |  
+              v                v  
+  +-----------------------------------------------+  
+  |                   PostgreSQL                  |  
+  +-----------------------------------------------+  
+  |                 Users Table                   |  
+  |                 Fractals Table                |  
+  +-----------------------------------------------+   
 
 ## Getting Started
 ### Prerequisites
@@ -91,11 +90,11 @@ $ pip install -r requirements.txt
 ```
 ### Add environment variables
 Create a .env file in the root directory and add the following variables:
-SECRET_KEY='changethissecretkey'
-FLASK_APP='julia/main.py'
-DATABASE_URL='sqlite:///database.db'
-DEBUG=True
-E2E_APP_PORT=5001
+SECRET_KEY='changethissecretkey'  
+FLASK_APP='julia/main.py'  
+DATABASE_URL='sqlite:///database.db'  
+DEBUG=True  
+E2E_APP_PORT=5001    
 > To avoid a bug please also run this command:
 ```sh
 $ export FLASK_APP=julia/main.py
