@@ -52,29 +52,29 @@ All other backend functions are handled with Flask.
 ### Architecture
 The below diagram does not show all endpoints and functions, but it does show the primary ones relating to displaying and rendering fractals.
 
-  +-----------------------------------------------+  
-  |           User Interface (HTML, CSS, JS)      |  
-  +-----------------------------------------------+  
-              ^                ^  
-              |                |  
-              v                v  
-  +-----------------------------------------------+  
-  |                    Flask App                  |  
-  +-----------------------------------------------+  
-  |                  /generate                     |   
-  |                  generate() API                |  
-  |                  /mandelbrot/\<query params>    |  
-  |                  mandelbrot(slug)              | <--> Renders Mandelbrot Set and returns image  
-  +-----------------------------------------------+  
-              ^                ^  
-              |                |  
-              v                v  
-  +-----------------------------------------------+  
-  |                   PostgreSQL                  |  
-  +-----------------------------------------------+  
-  |                 Users Table                   |  
-  |                 Fractals Table                |  
-  +-----------------------------------------------+   
+  +---------------------------------------+  
+  |           User Interface (HTML, CSS, JS)    |  
+  +---------------------------------------+  
+                          ^                  ^  
+                           |                   |    
+                          v                  v  
+  +---------------------------------------+  
+  |                          Flask App                           |  
+  +---------------------------------------+  
+  |                           /generate                          |   
+  |                        generate() API                     |  
+  |               /mandelbrot/\<query params>       |  
+  |                      mandelbrot(slug)                  | <--> Renders Mandelbrot Set and returns image  
+  +---------------------------------------+  
+                          ^                  ^  
+                           |                   |    
+                          v                  v  
+  +---------------------------------------+   
+  |                         PostgreSQL                        |  
+  +---------------------------------------+  
+  |                         Users Table                        |  
+  |                       Fractals Table                      |  
+  +---------------------------------------+
 
 ## Getting Started
 ### Prerequisites
