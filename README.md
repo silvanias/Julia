@@ -17,6 +17,7 @@
 
 - [About](#about)
   - [Built With](#built-with)
+  - [Architecture](#architecture)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -48,6 +49,33 @@ The front end of the website is all done in plain HTML, CSS and JavaScript.
 The production database is saved on PostgreSQL, with the local db using SQLite. 
 The rendering of the Mandelbrot set is done entirely in python with the matplotlib library used for visualisation.
 All other backend functions are handled with Flask.
+
+### Architecture
+The below diagram does not show all endpoints and functions, but it does show the primary ones relating to displaying and rendering fractals.
+
+  +-----------------------------------------------+
+  |           User Interface (HTML, CSS, JS)      |
+  +-----------------------------------------------+
+              ^                ^
+              |                |
+              v                v
+  +-----------------------------------------------+
+  |                    Flask App                   |
+  +-----------------------------------------------+
+  |                  /generate                     | 
+  |                  generate() API                |
+  |                  /mandelbrot/<query params>    |
+  |                  mandelbrot(slug)              | <--> Renders Mandelbrot Set and returns image
+  +-----------------------------------------------+
+              ^                ^
+              |                |
+              v                v
+  +-----------------------------------------------+
+  |                   PostgreSQL                  |
+  +-----------------------------------------------+
+  |                 Users Table                   |
+  |                 Fractals Table                |
+  +-----------------------------------------------+
 
 ## Getting Started
 ### Prerequisites
