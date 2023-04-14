@@ -51,6 +51,7 @@ All other backend functions are handled with Flask.
 
 ### Architecture
 The below diagram does not show all endpoints and functions, but it does show the primary ones relating to displaying and rendering fractals.
+<img src="docs/images/juliaArchitecture.drawio (1).png" title="Landing Page" width="100%"> 
 
   +---------------------------------------+  
   |           User Interface (HTML, CSS, JS)    |  
