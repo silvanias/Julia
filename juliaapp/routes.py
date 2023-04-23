@@ -55,6 +55,7 @@ def get_signup():
 @blueprint.post('/signup')
 def post_signup(): 
     try:
+        db.session.begin()
         email = request.form.get('email')
         username = request.form.get('username')
         password1 = request.form.get('password1')
@@ -70,6 +71,7 @@ def post_signup():
         
         new_user = User(email = email, username = username, password = generate_password_hash(password1, method = 'pbkdf2:sha256'))
         new_user.save()
+        db.session.commit()
         login_user(new_user)
         flash('User Created!', category='success')
         return redirect(url_for('routes.profile' , username=username))
@@ -111,6 +113,7 @@ def get_gen():
 @blueprint.post('/gen')
 def post_gen():
     try: 
+        db.session.begin()
         realnum = request.form.get('realnum')
         imagnum = request.form.get('imagnum')
         hexval = request.form.get('hexval')
@@ -121,6 +124,7 @@ def post_gen():
             raise Exception('Hex value is taken by another user')
         # Production db failing on this step
         Fractal(fractal_type=chosenSet,hex_value=hexval,user_id=current_user.id).save()
+        db.session.commit()
         flash('Form submitted', category='success')
         return render_template('gen.html', sets=sets, renders=Fractal.query.filter_by(user_id=current_user.id).all())
 
