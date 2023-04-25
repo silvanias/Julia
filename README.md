@@ -28,7 +28,8 @@
 ---
 
 ## About
-
+CURRENTLY SAVING OF FRACTALS IS NOT WORKING DUE TO A BUG. I have tried extensively to fix this, but have not managed to ascertain the issue. Please setup the project as detailed in the getting started section and run locally (by $ gunicorn main:app). I am working on a fix for this issue, and will update the README when it is fixed.
+<br>
 <a href="https://julia-y16w.onrender.com">Julia is a website which allows users to create accounts and then uniquely pair coloured renders of the mandelbrot set to said account.</a>
 In the future it would be great to be able to allow a user to zoom into specific parts of the mandelbrot set.
 The website is not meant to have many practical applications, it is simply a demonstration of my technical knowledge. The website is currently deployed, however it is highly recommended to run locally as it will avoid errors.

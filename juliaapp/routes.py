@@ -156,3 +156,6 @@ def nocache(response):
 def unauthorized_callback():
     return redirect(url_for('routes.get_login'))
     
+@blueprint.get('/rtype')
+def get_rtype(): 
+    return render_template('rtype.html')
