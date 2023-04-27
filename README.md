@@ -97,16 +97,19 @@ FLASK_APP='julia/main.py'
 DATABASE_URL='sqlite:///database.db'  
 DEBUG=True  
 E2E_APP_PORT=5001    
-> To avoid a bug please also run this command:
+> To avoid a bug please also run this command in the root directory:
 ```sh
-$ export FLASK_APP=julia/main.py
+$ export FLASK_APP=main.py
 ``` 
 
 ### Set up db
 
 ```sh
-$ flask db init
 $ flask db upgrade
+
+# Only run this next command if the first fails
+
+$ flask db init
 ```
 
 ### Run the tests
