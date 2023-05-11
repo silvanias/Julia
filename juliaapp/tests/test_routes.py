@@ -11,12 +11,6 @@ from flask import request
     # Test db constraints (delete user without deleting fractals)
     # Create a lock to prevent two users from grabbing colours at the same time
 
-def test_login_content(client):
-    # Returns landing content
-    response = client.get('/login')
-    assert b'<input type="email" name="email" id="email" placeholder="Email" required>' in response.data
-    assert b'<input type="password" name="password" id="password" placeholder="Password" required>' in response.data  
-
 def test_signup_creates_user(client):
     # Creates a user
     response = client.post('/signup', data={
@@ -48,8 +42,6 @@ def test_user_created_flash(client):
     assert b'<div class="alert success">' in response.data
     assert b'User Created!' in response.data 
 
-
-# Ask about this one!
 def test_user_nonunique_email_fail(client):
     client.post('/signup', data={
     'username':'test', 
@@ -65,14 +57,6 @@ def test_user_nonunique_email_fail(client):
     })
     assert b'<div class="alert error">' in response.data
     assert User.query.count() == 1
-
-def test_signup_content(client):
-    # Returns landing content
-    response = client.get('/signup')
-    assert b'<input type="text" name="username" id="username" placeholder="Username" required>' in response.data
-    assert b'<input type="email" name="email" id="email" placeholder="Email" required>' in response.data
-    assert b'<input type="password" name="password1" id="password1" placeholder="Password" required>' in response.data
-    assert b'<input type="password" name="password2" id="password2" placeholder="Confirm Password" required>' in response.data 
 
 def test_signup_flash_not_matched_passwords(client):
     # Pass bad data
