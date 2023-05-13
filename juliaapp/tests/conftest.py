@@ -17,7 +17,8 @@ def config():
     Instead of a persistent postgresql, tests use an in-memory sqlite database by default. This way, changes aren't persisted across test runs.
     """
     return Config(
-        database_url= 'sqlite://'
+        database_url = 'sqlite://',
+        testing = True
     ) 
 
 @pytest.fixture
