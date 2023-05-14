@@ -1,4 +1,4 @@
-from juliaapp.tests.test_scripts import login
+from juliaapp.tests.scripts_for_testing import login
 
 def test_signup_content(client):
     # Returns landing content
@@ -14,7 +14,6 @@ def test_login_content(client):
     assert b'<input type="email" name="email" id="email" placeholder="Email" required>' in response.data
     assert b'<input type="password" name="password" id="password" placeholder="Password" required>' in response.data  
 
-## LEARN HOW TO DO WITH MOCKING
 def test_generate_content(client, assertStatusCode2xx):
     login(client)
     response = client.get('/gen', follow_redirects=True)

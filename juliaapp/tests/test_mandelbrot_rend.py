@@ -1,10 +1,7 @@
 import unittest
 import numpy as np
 import matplotlib.pyplot as plt
-from juliaapp.scripts.mplmandelbrot import complex_matrix, is_stable, get_members, pltrender
-from juliaapp.tests.test_scripts import login, mandelbrot_winput
-import cv2
-from selenium import webdriver
+from juliaapp.scripts.mplmandelbrot import complex_matrix, is_stable, pltrender
 
 class TestMandelbrot(unittest.TestCase):
     def test_pltrender(self):
