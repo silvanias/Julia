@@ -1,18 +1,20 @@
 from juliaapp.tests.scripts_for_testing import login
 
-def test_signup_content(client):
+def test_signup_content(client, assertStatusCode2xx):
     # Returns landing content
     response = client.get('/signup')
     assert b'<input type="text" name="username" id="username" placeholder="Username" required>' in response.data
     assert b'<input type="email" name="email" id="email" placeholder="Email" required>' in response.data
     assert b'<input type="password" name="password1" id="password1" placeholder="Password" required>' in response.data
     assert b'<input type="password" name="password2" id="password2" placeholder="Confirm Password" required>' in response.data 
-
-def test_login_content(client):
+    assertStatusCode2xx(response.status_code)
+    
+def test_login_content(client, assertStatusCode2xx):
     # Returns landing content
     response = client.get('/login')
     assert b'<input type="email" name="email" id="email" placeholder="Email" required>' in response.data
     assert b'<input type="password" name="password" id="password" placeholder="Password" required>' in response.data  
+    assertStatusCode2xx(response.status_code)
 
 def test_generate_content(client, assertStatusCode2xx):
     login(client)
