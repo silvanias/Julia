@@ -3,19 +3,14 @@ import pytest
 from juliaapp.app import create_app
 from juliaapp.extensions.database import db
 from juliaapp.config import Config
-from os import environ, system
+from os import environ
 from flask_migrate import upgrade
 from dotenv.main import load_dotenv
-from flask_login import login_user
-from juliaapp.models import User
 
 @pytest.fixture
 def config():
-    """
-    Define the default config to use in tests by default.
-
-    Instead of a persistent postgresql, tests use an in-memory sqlite database by default. This way, changes aren't persisted across test runs.
-    """
+    # Return config to use in tests 
+    # Use in-memory sqlite database making changes not permanent across tests
     return Config(
         database_url = 'sqlite://',
         testing = True
@@ -23,9 +18,7 @@ def config():
 
 @pytest.fixture
 def app(config):
-    """
-    Create an app using the test config.
-    """
+    # Create app using test config
     return create_app(config)
 
 @pytest.fixture
@@ -34,6 +27,15 @@ def client(app):
         upgrade()
         yield app.test_client()
         db.drop_all()
+
+@pytest.fixture
+def assertStatusCode2xx():
+    def assertStatusCode2xx(status_code: int):
+        assert status_code >= 200
+        assert status_code < 300
+        
+    return assertStatusCode2xx
+
 
 @pytest.fixture
 def e2e_host(app):
@@ -45,11 +47,3 @@ def e2e_host(app):
     with app.app_context():
         upgrade()
         yield app.test_client()
-
-@pytest.fixture
-def assertStatusCode2xx():
-    def assertStatusCode2xx(status_code: int):
-        assert status_code >= 200
-        assert status_code < 300
-        
-    return assertStatusCode2xx

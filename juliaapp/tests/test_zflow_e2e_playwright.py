@@ -4,6 +4,7 @@ from juliaapp.models import User
 # pytest -v --slowmo 1000  --headed   
 # run app in a seperate terminal to allow it to interface with the browser
 
+# Generate random usernames/hex values for testing
 import string
 import random
 res = ''.join(random.choices(string.ascii_letters, k=32))
