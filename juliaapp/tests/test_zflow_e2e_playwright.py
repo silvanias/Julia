@@ -1,7 +1,11 @@
 from playwright.sync_api import Page, expect
 import re
 from juliaapp.models import User
-# pytest -v --slowmo 1000  --headed   
+# gunicorn main:app
+# pytest -v --slowmo 1000  --headed  
+# coverage report -i 
+# mutatest
+
 # run app in a seperate terminal to allow it to interface with the browser
 
 # Generate random usernames/hex values for testing

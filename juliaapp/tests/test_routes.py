@@ -1,4 +1,4 @@
-from juliaapp.models import User
+from juliaapp.models import User, Fractal
 from juliaapp.tests.scripts_for_testing import login
 from datetime import datetime 
 from unittest.mock import PropertyMock, patch
@@ -82,11 +82,11 @@ def test_signup_flash_not_matched_passwords(client):
     assert b'<div class="alert error">' in response.data
     assert b'Passwords must match' in response.data
 
-def test_gen_invalid_hexes(client):
+def test_gen_invalid_hex_flash(client):
     # Create user
     user1 = User(username='test1', email='user@test.com', password='password', creation_date=datetime(2000, 1, 1, 12, 00, 00))
     # Mock current_user
-    with patch('flask_login.utils._get_user', new_callable=PropertyMock) as get_user:
+    with patch('flask_login.utils._get_user') as get_user:
         get_user.return_value = user1
 
         # Pass invalid hex value
