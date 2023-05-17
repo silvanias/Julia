@@ -28,11 +28,12 @@
 ---
 
 ## About
-CURRENTLY SAVING OF FRACTALS IS NOT WORKING DUE TO A BUG. I have tried extensively to fix this, but have not managed to ascertain the issue. Please setup the project as detailed in the getting started section and run locally (by $ gunicorn main:app). I am working on a fix for this issue, and will update the README when it is fixed.
+Please setup the project as detailed in the getting started section and run locally (by $ gunicorn main:app). The hosting service I am using is incredibly slow, and working on bugs relating to it are not a priortity for me currently.
 <br>
-<a href="https://julia-y16w.onrender.com">Julia is a website which allows users to create accounts and then uniquely pair coloured renders of the mandelbrot set to said account.</a>
+<br>
+<a href="https://julia-y16w.onrender.com">Julia </a> is a website which allows users to create accounts and then uniquely pair coloured renders of the mandelbrot set to said account.
 In the future it would be great to be able to allow a user to zoom into specific parts of the mandelbrot set.
-The website is not meant to have many practical applications, it is simply a demonstration of my technical knowledge. The website is currently deployed, however it is highly recommended to run locally as it will avoid errors.
+The website is not meant to have practical applications, and is simply a fun project to test myself. The website is currently deployed, however it is highly recommended to run locally as it will avoid errors.
 <details>
 <summary>Screenshots</summary>
 <br>
@@ -45,10 +46,13 @@ The website is not meant to have many practical applications, it is simply a dem
 
 ### Built With
 
-The front end of the website is all done in plain HTML, CSS and JavaScript. 
-The production database is saved on PostgreSQL, with the local db using SQLite. 
+I am using the Python Flask framework for all handling of routing and backend logic. The front end of the website is all done in plain HTML, CSS and JavaScript. 
+The production database is saved on PostgreSQL, with the development db using SQLite. 
 The rendering of the Mandelbrot set is done entirely in python with the matplotlib library used for visualisation.
-All other backend functions are handled with Flask.
+Anything not mentioned uses Python. <br>
+
+I tried to experiment with a wide range of testing in this project and attempt to apply best practices in regards to the testing pyramid/mocking/coverage, and so am using a variety of technologies relating to this. 
+Currently I am using pytest/unittest for all integration and unit tests, Playwright for E2E, Selenium for screenshot testing, Mutagen for mutation testing and Coverage.py for measuring the coverage of my tests.  
 
 ### Architecture
 The below diagram does not show all endpoints and functions, but it does show the primary ones relating to displaying and rendering fractals.
@@ -112,11 +116,6 @@ $ flask db upgrade
 $ flask db init
 ```
 
-### Run the tests
-```sh
-$ pytest -v
-```
-> The tests are currently not complete, but they do test the main functionality of the website.
 ## Usage
 
 > To run the website locally, run the following command:
@@ -124,6 +123,15 @@ $ pytest -v
 $ gunicorn main:app
 ```
 > The website will then be available at http://localhost:8000/, and you will be able to create an account and generate your own mandelbrot set.
+
+### Run the tests
+```sh
+$ pytest -v
+$ mutatest
+$ coverage run -m pytest -v
+$ coverage report -i 
+```
+> Make sure that you are running a local instance to allow e2e tests to interface.
 
 ## Support
 
